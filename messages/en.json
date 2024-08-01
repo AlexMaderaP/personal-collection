@@ -1,0 +1,23 @@
+{
+  "home": {
+    "nav": {
+      "title": "Personal Collection",
+      "home": "Home",
+      "search": "Search",
+      "lang": "en"
+    },
+    "title": "Hello world!",
+    "create": "Create",
+    "custom": "Custom",
+    "collection": "Collection",
+    "display": "Here I will display the created collections to everyone"
+  },
+  "notFound": {
+    "title": "Sorry, page not found!",
+    "home": "Home"
+  },
+  "error": {
+    "message": "Sorry, something went wrong!",
+    "home": "Home"
+  }
+}

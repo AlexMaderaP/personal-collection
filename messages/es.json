@@ -1,0 +1,23 @@
+{
+  "home": {
+    "nav": {
+      "title": "Colección Personal",
+      "home": "Inicio",
+      "search": "Buscar",
+      "lang": "es"
+    },
+    "title": "Hello world!",
+    "create": "Crea",
+    "custom": "Colecciones",
+    "collection": "Personalizadas",
+    "display": "Aqui mostraré las coleciones para todos"
+  },
+  "notFound": {
+    "title": "Disculpa, la página no fue encontrada!",
+    "home": "Inicio"
+  },
+  "error": {
+    "message": "Lo siento, algo salió mal!",
+    "home": "Inicio"
+  }
+}
