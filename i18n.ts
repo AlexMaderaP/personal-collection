@@ -1,5 +1,6 @@
 import { notFound } from "next/navigation";
 import { getRequestConfig } from "next-intl/server";
+
 import { siteConfig } from "./config/site";
 
 const locales = siteConfig.locales;

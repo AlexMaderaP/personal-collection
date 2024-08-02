@@ -13,15 +13,16 @@ import { Input } from "@nextui-org/input";
 import { link as linkStyles } from "@nextui-org/theme";
 import NextLink from "next/link";
 import clsx from "clsx";
+import { useTranslations } from "next-intl";
+
+import LangDropdown from "./lang-dropdown";
 
 import { siteConfig } from "@/config/site";
 import { ThemeSwitch } from "@/components/theme-switch";
 import { GithubIcon, SearchIcon } from "@/components/icons";
-import { getTranslations } from "next-intl/server";
-import LangDropdown from "./lang-dropdown";
 
-export async function Navbar() {
-  const t = await getTranslations("home.nav");
+export function Navbar() {
+  const t = useTranslations("home.nav");
 
   const searchInput = (
     <Input
@@ -57,7 +58,7 @@ export async function Navbar() {
             <NextLink
               className={clsx(
                 linkStyles({ color: "foreground" }),
-                "data-[active=true]:text-primary data-[active=true]:font-medium"
+                "data-[active=true]:text-primary data-[active=true]:font-medium",
               )}
               color="foreground"
               href="/"

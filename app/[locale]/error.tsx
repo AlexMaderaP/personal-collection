@@ -1,19 +1,14 @@
 "use client";
 
-import { subtitle, title } from "@/components/primitives";
 import { Divider } from "@nextui-org/divider";
 import { useEffect } from "react";
 import { button as buttonStyles } from "@nextui-org/theme";
 import Link from "next/link";
 import { useTranslations } from "next-intl";
 
-export default function Error({
-  error,
-  reset,
-}: {
-  error: Error;
-  reset: () => void;
-}) {
+import { subtitle } from "@/components/primitives";
+
+export default function Error({ error }: { error: Error }) {
   const t = useTranslations("error");
 
   useEffect(() => {
@@ -25,7 +20,7 @@ export default function Error({
   return (
     <div className="flex flex-col items-center justify-center w-full gap-8 text-center">
       <h1 className={subtitle()}>{t("message")}</h1>
-      <Divider orientation="horizontal" className="max-w-80" />
+      <Divider className="max-w-80" orientation="horizontal" />
       <Link
         className={buttonStyles({
           color: "default",
