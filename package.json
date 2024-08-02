@@ -9,6 +9,8 @@
     "lint": "eslint . --ext .ts,.tsx -c .eslintrc.json --fix"
   },
   "dependencies": {
+    "@clerk/localizations": "^2.5.4",
+    "@clerk/nextjs": "^5.2.12",
     "@nextui-org/button": "2.0.37",
     "@nextui-org/code": "2.0.32",
     "@nextui-org/divider": "^2.0.31",

@@ -11,14 +11,15 @@ import { Kbd } from "@nextui-org/kbd";
 import { Link } from "@nextui-org/link";
 import { Input } from "@nextui-org/input";
 import { link as linkStyles } from "@nextui-org/theme";
-import NextLink from "next/link";
 import clsx from "clsx";
 import { useTranslations } from "next-intl";
 
 import LangDropdown from "./lang-dropdown";
+import InitSession from "./init-session";
 
+import { Link as LocaleLink } from "@/navigation";
 import { siteConfig } from "@/config/site";
-import { ThemeSwitch } from "@/components/theme-switch";
+import { ThemeSwitch } from "@/components/Navbar/theme-switch";
 import { GithubIcon, SearchIcon } from "@/components/icons";
 
 export function Navbar() {
@@ -49,13 +50,16 @@ export function Navbar() {
     <NextUINavbar className="border-b-small" maxWidth="xl" position="sticky">
       <NavbarContent className="basis-1/5 sm:basis-full" justify="start">
         <NavbarBrand as="li" className="gap-3 max-w-fit">
-          <NextLink className="flex justify-start items-center gap-1" href="/">
-            <p className="font-bold text-inherit">{t("title")}</p>
-          </NextLink>
+          <LocaleLink
+            className="flex justify-start items-center gap-1"
+            href="/"
+          >
+            <p className="font-bold text-default-900">{t("title")}</p>
+          </LocaleLink>
         </NavbarBrand>
         <ul className="hidden lg:flex gap-4 justify-start ml-2">
           <NavbarItem>
-            <NextLink
+            <LocaleLink
               className={clsx(
                 linkStyles({ color: "foreground" }),
                 "data-[active=true]:text-primary data-[active=true]:font-medium",
@@ -64,7 +68,7 @@ export function Navbar() {
               href="/"
             >
               {t("home")}
-            </NextLink>
+            </LocaleLink>
           </NavbarItem>
         </ul>
       </NavbarContent>
@@ -81,6 +85,9 @@ export function Navbar() {
           <ThemeSwitch />
         </NavbarItem>
         <NavbarItem className="hidden md:flex">{searchInput}</NavbarItem>
+        <NavbarItem className="hidden md:flex">
+          <InitSession signInMessage={t("signIn")} />
+        </NavbarItem>
       </NavbarContent>
 
       <NavbarContent className="md:hidden basis-1 pl-4" justify="end">
@@ -89,6 +96,9 @@ export function Navbar() {
           <GithubIcon className="text-default-500" />
         </Link>
         <ThemeSwitch />
+        <NavbarItem className="md:hidden">
+          <InitSession signInMessage={t("signIn")} />
+        </NavbarItem>
         <NavbarMenuToggle />
       </NavbarContent>
 

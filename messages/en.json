@@ -4,7 +4,8 @@
       "title": "Personal Collection",
       "home": "Home",
       "search": "Search",
-      "lang": "en"
+      "lang": "en",
+      "signIn": "Sign In"
     },
     "title": "Hello world!",
     "create": "Create",
