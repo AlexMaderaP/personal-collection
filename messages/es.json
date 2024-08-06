@@ -5,7 +5,9 @@
       "home": "Inicio",
       "search": "Buscar",
       "lang": "es",
-      "signIn": "Entrar"
+      "signIn": "Entrar",
+      "userDashboard": "Administrar Colecciones",
+      "adminDashboard": "Administrar App"
     },
     "title": "Hello world!",
     "create": "Crea",
@@ -20,5 +22,20 @@
   "error": {
     "message": "Lo siento, algo salió mal!",
     "home": "Inicio"
+  },
+  "admin": {
+    "dashboard": {
+      "title": "Administra Usuarios",
+      "name": "Nombre",
+      "email": "Email",
+      "role": "Rol",
+      "status": "Estatus",
+      "blocked": "Bloquear",
+      "active": "Activar",
+      "actions": "Acciones",
+      "makeUser": "Hacer Usuario",
+      "makeAdmin": "Hacer Admin",
+      "delete": "Eliminar"
+    }
   }
 }

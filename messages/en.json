@@ -5,7 +5,9 @@
       "home": "Home",
       "search": "Search",
       "lang": "en",
-      "signIn": "Sign In"
+      "signIn": "Sign In",
+      "userDashboard": "Manage Collections",
+      "adminDashboard": "Manage App"
     },
     "title": "Hello world!",
     "create": "Create",
@@ -20,5 +22,20 @@
   "error": {
     "message": "Sorry, something went wrong!",
     "home": "Home"
+  },
+  "admin": {
+    "dashboard": {
+      "title": "Manage Users",
+      "name": "Name",
+      "email": "Email",
+      "role": "Role",
+      "status": "Status",
+      "blocked": "Block",
+      "active": "Unblock",
+      "actions": "Actions",
+      "makeUser": "Make User",
+      "makeAdmin": "Make Admin",
+      "delete": "Delete"
+    }
   }
 }

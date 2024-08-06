@@ -16,6 +16,12 @@ export default clerkMiddleware((auth, req) => {
     return auth().redirectToSignIn();
   }
 
+  const path = req.nextUrl.pathname;
+
+  if (path.includes("/api")) {
+    return;
+  }
+
   return localeMiddleware(req);
 });
 
