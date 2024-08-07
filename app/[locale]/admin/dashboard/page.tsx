@@ -1,7 +1,6 @@
 import { clerkClient } from "@clerk/nextjs/server";
 import { getTranslations } from "next-intl/server";
 import { Card } from "@nextui-org/card";
-
 import { redirect } from "@/navigation";
 import { checkAdmin } from "@/utils/roles";
 import { title } from "@/components/primitives";
@@ -24,7 +23,7 @@ export default async function AdminDashboard() {
     <>
       <h1 className={title()}>{t("title")} </h1>
       <div className="flex m-6 w-full justify-center">
-        <Card className="grid grid-cols-[repeat(4,_1fr)_2fr] gap-6 p-4 w-[80%] text-center">
+        <Card className="grid grid-cols-[repeat(4,_1fr)_2fr] gap-6 p-4 w-[80%] text-center overflow-auto">
           {columns.map((column, idx) => (
             <div key={idx} className="font-bold">
               {t(column)}

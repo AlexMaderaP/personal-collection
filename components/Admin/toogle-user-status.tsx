@@ -1,6 +1,7 @@
 import { Button } from "@nextui-org/button";
 import React, { useState } from "react";
 import toast from "react-hot-toast";
+import { useAuth } from "@clerk/nextjs";
 
 import { useRouter } from "@/navigation";
 
@@ -16,6 +17,7 @@ export default function ToogleUserStatusButton({
   statusMessage,
 }: ToogleUserStatusButtonProps) {
   const [loading, setLoading] = useState(false);
+  const { signOut } = useAuth();
   const router = useRouter();
 
   async function handleStatusChange(action: "ban" | "unban") {
@@ -28,15 +30,18 @@ export default function ToogleUserStatusButton({
         },
         body: JSON.stringify({ id }),
       });
-
+      const data = await response.json();
       if (response.ok) {
         toast.success(
           action === "ban"
             ? "User Blocked Successfully"
-            : "User Unblocked Successfully",
+            : "User Unblocked Successfully"
         );
       } else {
         toast.error("Sorry, try again");
+      }
+      if (data.requiresSignOut) {
+        await signOut();
       }
       router.refresh();
     } catch (err) {
