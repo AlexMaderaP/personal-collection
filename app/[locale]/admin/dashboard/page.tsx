@@ -23,7 +23,7 @@ export default async function AdminDashboard() {
     <>
       <h1 className={title()}>{t("title")} </h1>
       <div className="flex m-6 w-full justify-center">
-        <Card className="grid grid-cols-[repeat(4,_1fr)_2fr] gap-6 p-4 w-[80%] text-center overflow-auto">
+        <Card className="grid grid-cols-[repeat(4,_1fr)_2fr] gap-6 p-4 w-[90%] text-center overflow-auto">
           {columns.map((column, idx) => (
             <div key={idx} className="font-bold">
               {t(column)}

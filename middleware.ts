@@ -9,7 +9,11 @@ const localeMiddleware = createMiddleware({
   localePrefix: "always",
 });
 
-const isProtectedRoute = createRouteMatcher(["/user(.*)", "/:locale/user(.*)"]);
+const isProtectedRoute = createRouteMatcher([
+  "/user(.*)",
+  "/:locale/user(.*)",
+  "/:locale/collection/new(.*)",
+]);
 
 export default clerkMiddleware((auth, req) => {
   if (!auth().userId && isProtectedRoute(req)) {

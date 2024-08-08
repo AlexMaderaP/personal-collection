@@ -37,5 +37,11 @@
       "makeAdmin": "Hacer Admin",
       "delete": "Eliminar"
     }
+  },
+  "user": {
+    "dashboard": {
+      "title": "Administar colecciones",
+      "new": "Crear"
+    }
   }
 }
