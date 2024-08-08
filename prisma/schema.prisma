@@ -1,0 +1,91 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Collection {
+  id         Int     @id @default(autoincrement())
+  name       String
+  userId     String
+  descripion String  @db.Text
+  imageUrl   String? @db.Text
+
+  categoryId Int
+  category   Category @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+
+  customFields CustomField[]
+
+  items Item[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([categoryId])
+}
+
+model Category {
+  id          Int          @id @default(autoincrement())
+  name        String       @unique
+  collections Collection[]
+}
+
+model Item {
+  id   Int    @id @default(autoincrement())
+  name String
+
+  collectionId Int
+  collection   Collection @relation(fields: [collectionId], references: [id], onDelete: Cascade)
+
+  tags              Tag[]
+  customFieldValues CustomFieldValue[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([collectionId])
+}
+
+model Tag {
+  id    Int    @id @default(autoincrement())
+  name  String @unique
+  items Item[]
+}
+
+model CustomField {
+  id         Int             @id @default(autoincrement())
+  name       String
+  isRequired Boolean         @default(false)
+  type       CustomFieldType
+
+  collectionId Int
+  collection   Collection @relation(fields: [collectionId], references: [id], onDelete: Cascade)
+
+  customFieldValues CustomFieldValue[]
+
+  @@unique([collectionId, name])
+}
+
+model CustomFieldValue {
+  id    Int     @id @default(autoincrement())
+  value String?
+
+  itemId Int
+  item   Item @relation(fields: [itemId], references: [id], onDelete: Cascade)
+
+  customFieldId Int
+  customField   CustomField @relation(fields: [customFieldId], references: [id], onDelete: Cascade)
+
+  @@unique([itemId, customFieldId])
+}
+
+enum CustomFieldType {
+  STRING
+  INTEGER
+  BOOLEAN
+  TEXT
+  DATE
+}
