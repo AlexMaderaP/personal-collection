@@ -1,8 +1,8 @@
 import { button as buttonStyles } from "@nextui-org/theme";
 import { Divider } from "@nextui-org/divider";
 import { useTranslations } from "next-intl";
-import { Link } from "@/navigation";
 
+import { Link } from "@/navigation";
 import { title } from "@/components/primitives";
 
 export default function NotFoundPage() {

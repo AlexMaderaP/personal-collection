@@ -11,16 +11,20 @@
   "dependencies": {
     "@clerk/localizations": "^2.5.4",
     "@clerk/nextjs": "^5.2.12",
+    "@hookform/resolvers": "^3.9.0",
     "@nextui-org/button": "2.0.37",
     "@nextui-org/card": "^2.0.33",
+    "@nextui-org/checkbox": "^2.1.4",
     "@nextui-org/code": "2.0.32",
     "@nextui-org/divider": "^2.0.31",
     "@nextui-org/dropdown": "^2.1.29",
+    "@nextui-org/image": "^2.0.31",
     "@nextui-org/input": "2.2.4",
     "@nextui-org/kbd": "2.0.33",
     "@nextui-org/link": "2.0.34",
     "@nextui-org/listbox": "2.1.25",
     "@nextui-org/navbar": "2.0.36",
+    "@nextui-org/select": "^2.2.5",
     "@nextui-org/snippet": "2.0.41",
     "@nextui-org/switch": "2.0.33",
     "@nextui-org/system": "2.2.5",
@@ -38,8 +42,10 @@
     "next-themes": "^0.2.1",
     "react": "18.3.1",
     "react-dom": "18.3.1",
+    "react-hook-form": "^7.52.2",
     "react-hot-toast": "^2.4.1",
-    "uploadthing": "^6.13.2"
+    "uploadthing": "^6.13.2",
+    "zod": "^3.23.8"
   },
   "devDependencies": {
     "@types/node": "20.5.7",

@@ -43,5 +43,18 @@
       "title": "Administar colecciones",
       "new": "Crear"
     }
+  },
+  "collection": {
+    "new": {
+      "title": "Nueva Colección",
+      "name": "Nombre",
+      "description": "Descripción",
+      "category": "Categoría",
+      "addCustomField": "Agregar campo",
+      "create": "Crear",
+      "required": "Requerido",
+      "type": "Tipo",
+      "delete": "Eliminar"
+    }
   }
 }

@@ -1,5 +1,6 @@
-import { Link } from "@/navigation";
 import { button } from "@nextui-org/theme";
+
+import { Link } from "@/navigation";
 
 function ButtonLink({ href, message }: { href: string; message: string }) {
   return (

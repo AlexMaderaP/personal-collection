@@ -9,6 +9,7 @@ export async function POST(req: Request) {
   try {
     const { id, role } = await req.json();
     const { userId } = auth();
+
     if (!id || !role) {
       return new NextResponse("Invalid input", { status: 400 });
     }
@@ -28,7 +29,7 @@ export async function POST(req: Request) {
       {
         status: 200,
         headers: { "Content-Type": "application/json" },
-      }
+      },
     );
   } catch (error) {
     return new NextResponse("Error updating user role", { status: 500 });

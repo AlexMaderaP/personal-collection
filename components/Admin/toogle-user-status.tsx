@@ -31,11 +31,12 @@ export default function ToogleUserStatusButton({
         body: JSON.stringify({ id }),
       });
       const data = await response.json();
+
       if (response.ok) {
         toast.success(
           action === "ban"
             ? "User Blocked Successfully"
-            : "User Unblocked Successfully"
+            : "User Unblocked Successfully",
         );
       } else {
         toast.error("Sorry, try again");

@@ -19,7 +19,7 @@ export async function POST(req: Request) {
       {
         status: 200,
         headers: { "Content-Type": "application/json" },
-      }
+      },
     );
   } catch (error) {
     return new NextResponse("Error updating user status", { status: 500 });

@@ -16,6 +16,7 @@ export async function POST(req: Request) {
 
     const res = await clerkClient().users.banUser(id);
     const requiresSignOut = checkRequireSignOut(userId, id);
+
     return new NextResponse(
       JSON.stringify({
         message: `User blocked status: ${res.banned}`,
@@ -24,7 +25,7 @@ export async function POST(req: Request) {
       {
         status: 200,
         headers: { "Content-Type": "application/json" },
-      }
+      },
     );
   } catch (error) {
     return new NextResponse("Error updating user status", { status: 500 });

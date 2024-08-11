@@ -1,6 +1,6 @@
 export function checkRequireSignOut(
   userId: string | null,
-  id: string
+  id: string,
 ): boolean {
   return userId === id;
 }

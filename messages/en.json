@@ -43,5 +43,18 @@
       "title": "Manage Collections",
       "new": "New"
     }
+  },
+  "collection": {
+    "new": {
+      "title": "New Collection",
+      "name": "Name",
+      "description": "Description",
+      "category": "Category",
+      "addCustomField": "Add Custom Field",
+      "create": "Create",
+      "required": "Required",
+      "type": "Type",
+      "delete": "Delete"
+    }
   }
 }
