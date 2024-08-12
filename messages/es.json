@@ -54,7 +54,10 @@
       "create": "Crear",
       "required": "Requerido",
       "type": "Tipo",
-      "delete": "Eliminar"
+      "delete": "Eliminar",
+      "edit": "Editar",
+      "customField": "Campos extra",
+      "createdAt": "Creado"
     }
   }
 }

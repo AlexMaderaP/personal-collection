@@ -54,7 +54,10 @@
       "create": "Create",
       "required": "Required",
       "type": "Type",
-      "delete": "Delete"
+      "delete": "Delete",
+      "edit": "Edit",
+      "customField": "Custom Fields",
+      "createdAt": "Created at"
     }
   }
 }

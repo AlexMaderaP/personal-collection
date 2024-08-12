@@ -37,7 +37,7 @@ export default function NewCollection() {
   });
 
   const createNewCollectionHandler: SubmitHandler<NewCollectionInputs> = async (
-    data,
+    data
   ) => {
     const result = await createNewCollection(data);
 
@@ -47,7 +47,7 @@ export default function NewCollection() {
       return;
     }
     toast.success("Collection, created succesfully");
-    router.push("/user/dashboard");
+    router.push(`/collection/${result.id}`);
   };
 
   return (
