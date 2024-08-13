@@ -57,7 +57,11 @@
       "delete": "Delete",
       "edit": "Edit",
       "customField": "Custom Fields",
-      "createdAt": "Created at"
+      "createdAt": "Created at",
+      "save": "Save"
+    },
+    "edit": {
+      "title": "Edit Collection"
     }
   }
 }

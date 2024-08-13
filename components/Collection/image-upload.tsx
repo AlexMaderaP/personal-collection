@@ -2,19 +2,21 @@
 import { useState } from "react";
 import NextImage from "next/image";
 import { Image } from "@nextui-org/image";
-import { UseFormSetValue } from "react-hook-form";
 
 import { XIcon } from "../icons";
 
 import { UploadDropzone } from "@/utils/uploadthing";
-import { NewCollectionInputs } from "@/types/schemas";
 
 type FileUploadProps = {
-  setValue: UseFormSetValue<NewCollectionInputs>;
+  setValue: (str: string) => void;
+  imageUrlProp?: string | "";
 };
 
-export default function ImageUpload({ setValue }: FileUploadProps) {
-  const [imageUrl, setImageUrl] = useState("");
+export default function ImageUpload({
+  setValue,
+  imageUrlProp,
+}: FileUploadProps) {
+  const [imageUrl, setImageUrl] = useState(imageUrlProp);
 
   if (imageUrl) {
     return (
@@ -29,7 +31,7 @@ export default function ImageUpload({ setValue }: FileUploadProps) {
         <button
           className="bg-rose-500 text-white p-1 rounded-full absolute top-0 right-0 shadow-sm z-30"
           onClick={() => {
-            setValue("imageUrl", "");
+            setValue("");
             setImageUrl("");
           }}
         >
@@ -47,7 +49,7 @@ export default function ImageUpload({ setValue }: FileUploadProps) {
         onClientUploadComplete={(res) => {
           const url = res?.[0].url;
 
-          setValue("imageUrl", url);
+          setValue(url);
           setImageUrl(url);
         }}
       />

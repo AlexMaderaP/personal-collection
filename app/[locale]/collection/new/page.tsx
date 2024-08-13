@@ -8,7 +8,7 @@ import { Button } from "@nextui-org/button";
 import { useAuth } from "@clerk/nextjs";
 import toast from "react-hot-toast";
 
-import { createNewCollection } from "../../user/dashboard/_action";
+import { createNewCollection } from "./_action";
 
 import { title } from "@/components/primitives";
 import SelectCategory from "@/components/Collection/select-category";
@@ -37,7 +37,7 @@ export default function NewCollection() {
   });
 
   const createNewCollectionHandler: SubmitHandler<NewCollectionInputs> = async (
-    data
+    data,
   ) => {
     const result = await createNewCollection(data);
 
@@ -85,7 +85,7 @@ export default function NewCollection() {
               label={t("category")}
               register={register("categoryId")}
             />
-            <ImageUpload setValue={setValue} />
+            <ImageUpload setValue={(str) => setValue("imageUrl", str)} />
           </div>
           <div className="flex flex-col gap-3 min-w-72">
             <CustomFieldSection

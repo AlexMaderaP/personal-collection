@@ -57,7 +57,11 @@
       "delete": "Eliminar",
       "edit": "Editar",
       "customField": "Campos extra",
-      "createdAt": "Creado"
+      "createdAt": "Creado",
+      "save": "Guardar"
+    },
+    "edit": {
+      "title": "Editar Colección"
     }
   }
 }

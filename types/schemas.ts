@@ -18,3 +18,13 @@ export const newCollectionFormSchema = z.object({
 });
 
 export type NewCollectionInputs = z.infer<typeof newCollectionFormSchema>;
+
+export const editCollectionFormSchema = z.object({
+  id: z.coerce.number().int().positive("Collection Id is required"),
+  name: z.string().min(1, "Name is required"),
+  description: z.string().min(1, "Description is required"),
+  imageUrl: z.string().optional(),
+  categoryId: z.coerce.number().int().positive("Category is required"),
+});
+
+export type EditCollectionInputs = z.infer<typeof editCollectionFormSchema>;

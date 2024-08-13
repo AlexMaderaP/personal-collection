@@ -1,16 +1,15 @@
-import ButtonLink from "@/components/button-link";
-import DeleteButton from "@/components/Collection/delete-button";
-import { subtitle, title } from "@/components/primitives";
-import { getCollection } from "@/utils/db/collection";
-import { checkAdmin } from "@/utils/roles";
 import { auth } from "@clerk/nextjs/server";
-import { Button } from "@nextui-org/button";
-import { Card, CardBody, CardFooter, CardHeader } from "@nextui-org/card";
-import { Divider } from "@nextui-org/divider";
+import { Card, CardBody, CardHeader } from "@nextui-org/card";
 import { Image } from "@nextui-org/image";
 import clsx from "clsx";
 import { getTranslations } from "next-intl/server";
 import { notFound } from "next/navigation";
+
+import { checkAdmin } from "@/utils/roles";
+import { getCollection } from "@/utils/db/collection";
+import { subtitle, title } from "@/components/primitives";
+import DeleteButton from "@/components/Collection/delete-collection-button";
+import ButtonLink from "@/components/button-link";
 
 export default async function CollectionPage({
   params,
@@ -20,6 +19,7 @@ export default async function CollectionPage({
   const { userId } = auth();
   const collection = await getCollection(params.id);
   const t = await getTranslations("collection.new");
+
   if (!collection) notFound();
 
   const isOwnerOrAdmin = userId === collection.userId || checkAdmin();
@@ -33,10 +33,10 @@ export default async function CollectionPage({
           </div>
           <div className={clsx(isOwnerOrAdmin ? "" : "hidden", "flex gap-4")}>
             <ButtonLink
-              message={t("edit")}
               href={`/collection/${collection.id}/edit`}
+              message={t("edit")}
             />
-            <DeleteButton id={collection.id.toString()} message={t("delete")} />
+            <DeleteButton id={collection.id} message={t("delete")} />
           </div>
         </div>
         <p className="self-end mr-4">
@@ -47,11 +47,11 @@ export default async function CollectionPage({
         <Image
           alt="Collection Image"
           className="object-cover basis-1/3"
-          height={300}
-          width={400}
-          shadow="md"
           fallbackSrc="https://placehold.co/400x300?text=Not+Found"
+          height={300}
+          shadow="md"
           src={collection.imageUrl || ""}
+          width={400}
         />
         <div className="basis-2/3">
           <h2 className={subtitle()}>{t("description")}</h2>
