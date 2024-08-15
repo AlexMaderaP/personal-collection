@@ -8,9 +8,9 @@ export const checkAdmin = () => {
   return sessionClaims?.metadata.role === "admin";
 };
 
-export async function isOwnerOrAdmin(id: string) {
+export async function isOwnerOrAdmin(collectionid: string) {
   const { userId } = auth();
-  const collection = await getCollection(id);
+  const collection = await getCollection(collectionid);
 
   if (!collection) return false;
 

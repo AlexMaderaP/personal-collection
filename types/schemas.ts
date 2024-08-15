@@ -28,3 +28,21 @@ export const editCollectionFormSchema = z.object({
 });
 
 export type EditCollectionInputs = z.infer<typeof editCollectionFormSchema>;
+
+export const newCustomFieldFormSchema = z.object({
+  collectionId: z.coerce.number().int().positive("Collection Id is required"),
+  name: z.string().min(1, "Name is required"),
+  type: z.enum(["STRING", "INTEGER", "TEXT", "BOOLEAN", "DATE"]),
+  isRequired: z.boolean().default(false),
+});
+
+export type NewCustomFieldInputs = z.infer<typeof newCustomFieldFormSchema>;
+
+export const editCustomFieldFormSchema = z.object({
+  id: z.coerce.number().int().positive("Custom Field Id is required"),
+  name: z.string().min(1, "Name is required"),
+  type: z.enum(["STRING", "INTEGER", "TEXT", "BOOLEAN", "DATE"]),
+  isRequired: z.boolean().default(false),
+});
+
+export type EditCustomFieldInputs = z.infer<typeof editCustomFieldFormSchema>;

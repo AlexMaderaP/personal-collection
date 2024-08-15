@@ -25,6 +25,7 @@ export async function updateCollection(dataForm: EditCollectionInputs) {
     }
   } catch (error) {
     console.error("Error updating collection:", error);
+
     return;
   }
 }

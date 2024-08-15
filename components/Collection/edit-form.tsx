@@ -2,13 +2,15 @@
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Input, Textarea } from "@nextui-org/input";
-import React from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { Button } from "@nextui-org/button";
 import { useTranslations } from "next-intl";
 import toast from "react-hot-toast";
+import { useState } from "react";
 
 import ImageUpload from "./image-upload";
+import EditCustomFieldForm from "./CustomField/edit-custom-field-form";
+import NewCustomFieldForm from "./CustomField/new-custom-field-form";
 
 import { CollectionWithFieldsCategory } from "@/types/collection";
 import {
@@ -16,7 +18,7 @@ import {
   EditCollectionInputs,
 } from "@/types/schemas";
 import { useRouter } from "@/navigation";
-import { updateCollection } from "@/app/[locale]/collection/[id]/edit/_action";
+import { updateCollection } from "@/utils/actions/collection";
 
 type EditFormProps = {
   collection: CollectionWithFieldsCategory;
@@ -24,6 +26,7 @@ type EditFormProps = {
 
 export default function EditForm({ collection }: EditFormProps) {
   const t = useTranslations("collection.new");
+  const [isAddingField, setIsAddingField] = useState(false);
   const {
     register,
     handleSubmit,
@@ -43,7 +46,7 @@ export default function EditForm({ collection }: EditFormProps) {
   const router = useRouter();
 
   const editCollectionHandler: SubmitHandler<EditCollectionInputs> = async (
-    data
+    data,
   ) => {
     const result = await updateCollection(data);
 
@@ -57,11 +60,11 @@ export default function EditForm({ collection }: EditFormProps) {
   };
 
   return (
-    <form
-      className="flex flex-wrap gap-6"
-      onSubmit={handleSubmit(editCollectionHandler)}
-    >
-      <div className="flex flex-col gap-3">
+    <div className="flex flex-wrap gap-6">
+      <form
+        className="flex flex-col gap-3"
+        onSubmit={handleSubmit(editCollectionHandler)}
+      >
         <input {...register("id")} type="hidden" value={collection.id} />
         <input
           {...register("categoryId")}
@@ -88,32 +91,31 @@ export default function EditForm({ collection }: EditFormProps) {
           imageUrlProp={collection.imageUrl || ""}
           setValue={(str: string) => setValue("imageUrl", str)}
         />
+        <div className=" flex justify-end mt-auto">
+          <Button color="success" disabled={isSubmitting} type="submit">
+            {t("save")}
+          </Button>
+        </div>
+      </form>
+      <div className="flex flex-col gap-3 min-w-72">
+        {collection.customFields.map((customField) => (
+          <EditCustomFieldForm key={customField.id} customField={customField} />
+        ))}
+        {isAddingField ? (
+          <NewCustomFieldForm
+            collectionId={collection.id}
+            setAddingFalse={() => setIsAddingField(false)}
+          />
+        ) : (
+          <Button
+            fullWidth
+            color="primary"
+            onClick={() => setIsAddingField(true)}
+          >
+            {t("addCustomField")}
+          </Button>
+        )}
       </div>
-      <div className=" flex justify-end mt-auto">
-        <Button color="success" disabled={isSubmitting} type="submit">
-          {t("save")}
-        </Button>
-      </div>
-    </form>
+    </div>
   );
-}
-
-{
-  /* <div className="flex flex-col gap-3 min-w-72">
-        <CustomFieldSection
-          errors={errors}
-          fields={fields}
-          register={register}
-          remove={remove}
-        />
-        <Button
-          fullWidth
-          color="primary"
-          onClick={() =>
-            append({ name: "", isRequired: false, type: "STRING" })
-          }
-        >
-          {t("addCustomField")}
-        </Button>
-      </div> */
 }
