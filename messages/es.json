@@ -41,7 +41,17 @@
   "user": {
     "dashboard": {
       "title": "Administar colecciones",
-      "new": "Crear"
+      "new": "Crear",
+      "id": "ID",
+      "name": "Nombre",
+      "imageUrl": "URL Imagen",
+      "category": "Categoría",
+      "customFields": "# Campos Personalizados",
+      "items": "# Items",
+      "createdAt": "Creado en",
+      "updatedAt": "Actualizado en",
+      "actions": "Acciones",
+      "search": "Buscar por nombre..."
     }
   },
   "collection": {

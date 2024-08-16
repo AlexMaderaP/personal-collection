@@ -33,7 +33,7 @@ function DeleteCustomField({
       );
 
       if (response.ok) {
-        toast.success("Custom Field Successfully");
+        toast.success("Custom Field deleted successfully");
       } else {
         toast.error("Sorry, try again");
       }

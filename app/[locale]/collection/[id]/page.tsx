@@ -8,8 +8,8 @@ import { notFound } from "next/navigation";
 import { checkAdmin } from "@/utils/roles";
 import { getCollection } from "@/utils/db/collection";
 import { subtitle, title } from "@/components/primitives";
-import DeleteButton from "@/components/Collection/delete-collection-button";
 import ButtonLink from "@/components/button-link";
+import DeleteCollectionButton from "@/components/Collection/delete-collection-button";
 
 export default async function CollectionPage({
   params,
@@ -36,7 +36,7 @@ export default async function CollectionPage({
               href={`/collection/${collection.id}/edit`}
               message={t("edit")}
             />
-            <DeleteButton id={collection.id} message={t("delete")} />
+            <DeleteCollectionButton id={collection.id} message={t("delete")} />
           </div>
         </div>
         <p className="self-end mr-4">
@@ -47,7 +47,7 @@ export default async function CollectionPage({
         <Image
           alt="Collection Image"
           className="object-cover basis-1/3"
-          fallbackSrc="https://placehold.co/400x300?text=Not+Found"
+          fallbackSrc="https://placehold.co/400x300?text=Not+Provided"
           height={300}
           shadow="md"
           src={collection.imageUrl || ""}

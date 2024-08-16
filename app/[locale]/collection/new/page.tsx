@@ -8,14 +8,13 @@ import { Button } from "@nextui-org/button";
 import { useAuth } from "@clerk/nextjs";
 import toast from "react-hot-toast";
 
-import { createNewCollection } from "./_action";
-
 import { title } from "@/components/primitives";
 import SelectCategory from "@/components/Collection/select-category";
 import ImageUpload from "@/components/Collection/image-upload";
 import CustomFieldSection from "@/components/Collection/custom-field-section";
 import { useRouter } from "@/navigation";
 import { newCollectionFormSchema, NewCollectionInputs } from "@/types/schemas";
+import { createNewCollection } from "@/utils/actions/collection";
 
 export default function NewCollection() {
   const { userId } = useAuth();

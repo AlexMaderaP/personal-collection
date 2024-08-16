@@ -5,12 +5,15 @@ import toast from "react-hot-toast";
 
 import { useRouter } from "@/navigation";
 
-export default function DeleteButton({
+export default function DeleteCollectionButton({
   id,
   message,
+  isIcon = false,
 }: {
   id: number;
-  message: string;
+  message: string | JSX.Element;
+  isIcon?: boolean;
+  refresh?: boolean;
 }) {
   const [loading, setLoading] = useState(false);
   const router = useRouter();
@@ -24,11 +27,12 @@ export default function DeleteButton({
       });
 
       if (response.ok) {
-        toast.success("User Deleted Successfully");
+        toast.success("Collection Deleted Successfully");
       } else {
         toast.error("Sorry, try again");
       }
       router.push("/user/dashboard");
+      router.refresh();
     } catch (error) {
       toast.error("Sorry, an error ocurred");
       router.refresh();
@@ -38,7 +42,13 @@ export default function DeleteButton({
   }
 
   return (
-    <Button color="danger" isDisabled={loading} onClick={handleDelete}>
+    <Button
+      color="danger"
+      isDisabled={loading}
+      isIconOnly={isIcon}
+      variant={isIcon ? "light" : "solid"}
+      onClick={handleDelete}
+    >
       {message}
     </Button>
   );

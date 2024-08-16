@@ -41,7 +41,17 @@
   "user": {
     "dashboard": {
       "title": "Manage Collections",
-      "new": "New"
+      "new": "New",
+      "id": "ID",
+      "name": "Name",
+      "imageUrl": "Image URL",
+      "category": "Category",
+      "customFields": "# Custom Fields",
+      "items": "# Items",
+      "createdAt": "Created At",
+      "updatedAt": "Updated At",
+      "actions": "Actions",
+      "search": "Search by name..."
     }
   },
   "collection": {

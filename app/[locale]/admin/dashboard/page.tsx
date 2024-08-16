@@ -6,7 +6,7 @@ import { redirect } from "@/navigation";
 import { checkAdmin } from "@/utils/roles";
 import { title } from "@/components/primitives";
 import UserRow from "@/components/Admin/user-row";
-import { getUserDisplayData } from "@/utils/userHelpers";
+import { getUserDisplayData } from "@/utils/helpers/users";
 
 const columns = ["name", "email", "role", "status", "actions"] as const;
 

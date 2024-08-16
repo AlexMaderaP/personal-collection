@@ -6,3 +6,13 @@ export type CollectionWithFieldsCategory = Prisma.CollectionGetPayload<{
     category: true;
   };
 }>;
+
+export type CollectionForTable = {
+  id: number;
+  name: string;
+  category: string;
+  imageUrl: string | null;
+  customFields: number;
+  items: number;
+  createdAt: Date;
+};

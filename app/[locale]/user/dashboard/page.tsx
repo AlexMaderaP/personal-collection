@@ -1,11 +1,17 @@
-import { Card } from "@nextui-org/card";
-import { useTranslations } from "next-intl";
+import { getTranslations } from "next-intl/server";
+import { auth } from "@clerk/nextjs/server";
 
 import ButtonLink from "@/components/button-link";
 import { title } from "@/components/primitives";
+import { getCollections } from "@/utils/db/collection";
+import CollectionTable from "@/components/Collection/Table/collection-table";
 
-export default function UserDashboard() {
-  const t = useTranslations("user.dashboard");
+export default async function UserDashboard() {
+  const t = await getTranslations("user.dashboard");
+
+  const { userId } = auth();
+
+  const collections = await getCollections(userId!);
 
   return (
     <>
@@ -16,10 +22,10 @@ export default function UserDashboard() {
         <ButtonLink href="/collection/new" message={t("new")} />
       </div>
       <div className="flex m-6 w-full justify-center">
-        <Card className="grid grid-cols-[repeat(4,_1fr)_2fr] gap-6 p-4 w-[90%] text-center overflow-auto">
-          Table to show the user collections
-        </Card>
+        <CollectionTable collections={collections} />
       </div>
     </>
   );
 }
+
+export const dynamic = "force-dynamic";
