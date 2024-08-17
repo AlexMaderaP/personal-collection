@@ -1,5 +1,5 @@
 import { auth } from "@clerk/nextjs/server";
-import { Card, CardBody, CardHeader } from "@nextui-org/card";
+import { Card } from "@nextui-org/card";
 import { Image } from "@nextui-org/image";
 import clsx from "clsx";
 import { getTranslations } from "next-intl/server";
@@ -25,25 +25,21 @@ export default async function CollectionPage({
   const isOwnerOrAdmin = userId === collection.userId || checkAdmin();
 
   return (
-    <Card className="w-full">
-      <CardHeader className="flex flex-col items-start">
-        <div className="flex items-center justify-between w-full">
-          <div>
-            <h1 className={title()}>{collection.name}</h1>
-          </div>
-          <div className={clsx(isOwnerOrAdmin ? "" : "hidden", "flex gap-4")}>
-            <ButtonLink
-              href={`/collection/${collection.id}/edit`}
-              message={t("edit")}
-            />
-            <DeleteCollectionButton id={collection.id} message={t("delete")} />
-          </div>
+    <div className="w-full flex flex-col items-center gap-8">
+      <div className="flex items-center justify-between w-full">
+        <div>
+          <h1 className={title()}>{collection.name}</h1>
         </div>
-        <p className="self-end mr-4">
-          {t("createdAt")}: {collection.createdAt.toLocaleDateString()}
-        </p>
-      </CardHeader>
-      <CardBody className="flex md:flex-row gap-6">
+        <div className={clsx(isOwnerOrAdmin ? "" : "hidden", "flex gap-4")}>
+          <ButtonLink
+            href={`/collection/${collection.id}/edit`}
+            message={t("edit")}
+          />
+          <DeleteCollectionButton id={collection.id} message={t("delete")} />
+        </div>
+      </div>
+
+      <Card className="flex md:flex-row gap-6 p-6">
         <Image
           alt="Collection Image"
           className="object-cover basis-1/3"
@@ -56,8 +52,16 @@ export default async function CollectionPage({
         <div className="basis-2/3">
           <h2 className={subtitle()}>{t("description")}</h2>
           <p>{collection.descripion}</p>
-          <h2 className={subtitle()}>{t("category")}</h2>
-          <p>{collection.category.name}</p>
+          <div className="flex flex-row gap-8 ">
+            <div className="basis-1/2">
+              <h2 className={subtitle()}>{t("category")}</h2>
+              <p>{collection.category.name}</p>
+            </div>
+            <div className="basis-1/2">
+              <h2 className={subtitle()}>{t("createdAt")}</h2>
+              <p>{collection.createdAt.toLocaleDateString()}</p>
+            </div>
+          </div>
           <h2 className={subtitle()}>{t("customField")}</h2>
           <div className="flex flex-wrap gap-8">
             {collection.customFields.map((customField) => (
@@ -75,7 +79,19 @@ export default async function CollectionPage({
             ))}
           </div>
         </div>
-      </CardBody>
-    </Card>
+      </Card>
+
+      <div className="flex items-center justify-between w-full">
+        <div>
+          <h1 className={title()}>Items</h1>
+        </div>
+        <div className={clsx(isOwnerOrAdmin ? "" : "hidden", "flex gap-4")}>
+          <ButtonLink
+            href={`/collection/${collection.id}/item/new`}
+            message={t("addItem")}
+          />
+        </div>
+      </div>
+    </div>
   );
 }

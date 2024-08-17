@@ -46,3 +46,23 @@ export const editCustomFieldFormSchema = z.object({
 });
 
 export type EditCustomFieldInputs = z.infer<typeof editCustomFieldFormSchema>;
+
+export const newItemFormSchema = z.object({
+  name: z.string().min(1, "Name is required"),
+  collectionId: z.coerce.number().int().positive("Collection Id is required"),
+  tags: z.array(
+    z.object({
+      name: z.string().min(1, "Tag name is required"),
+    }),
+  ),
+  customFieldValues: z
+    .array(
+      z.object({
+        customFieldId: z.coerce.number().positive("Collection Id is required"),
+        value: z.coerce.string().min(1, "Value is required").optional(),
+      }),
+    )
+    .optional(),
+});
+
+export type newItemInputs = z.infer<typeof newItemFormSchema>;

@@ -68,10 +68,16 @@
       "edit": "Edit",
       "customField": "Custom Fields",
       "createdAt": "Created at",
-      "save": "Save"
+      "save": "Save",
+      "addItem": "Add Item"
     },
     "edit": {
       "title": "Edit Collection"
+    }
+  },
+  "item": {
+    "new": {
+      "title": "New Item"
     }
   }
 }

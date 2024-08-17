@@ -7,6 +7,15 @@ export type CollectionWithFieldsCategory = Prisma.CollectionGetPayload<{
   };
 }>;
 
+export type CustomFieldsForForm = Prisma.CustomFieldGetPayload<{
+  select: {
+    id: true;
+    name: true;
+    isRequired: true;
+    type: true;
+  };
+}>;
+
 export type CollectionForTable = {
   id: number;
   name: string;

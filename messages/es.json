@@ -68,10 +68,16 @@
       "edit": "Editar",
       "customField": "Campos extra",
       "createdAt": "Creado",
-      "save": "Guardar"
+      "save": "Guardar",
+      "addItem": "Add Item"
     },
     "edit": {
       "title": "Editar Colección"
+    }
+  },
+  "item": {
+    "new": {
+      "title": "Nuevo Item"
     }
   }
 }
