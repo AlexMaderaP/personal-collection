@@ -12,7 +12,7 @@ export const newCollectionFormSchema = z.object({
         name: z.string().min(1, "Name is required"),
         type: z.enum(["STRING", "INTEGER", "TEXT", "BOOLEAN", "DATE"]),
         isRequired: z.boolean().default(false),
-      }),
+      })
     )
     .optional(),
 });
@@ -52,17 +52,17 @@ export const newItemFormSchema = z.object({
   collectionId: z.coerce.number().int().positive("Collection Id is required"),
   tags: z.array(
     z.object({
-      name: z.string().min(1, "Tag name is required"),
-    }),
+      id: z.coerce.number().positive("Tag Id is required"),
+    })
   ),
   customFieldValues: z
     .array(
       z.object({
         customFieldId: z.coerce.number().positive("Collection Id is required"),
         value: z.coerce.string().min(1, "Value is required").optional(),
-      }),
+      })
     )
     .optional(),
 });
 
-export type newItemInputs = z.infer<typeof newItemFormSchema>;
+export type NewItemInputs = z.infer<typeof newItemFormSchema>;
