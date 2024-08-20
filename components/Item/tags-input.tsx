@@ -1,9 +1,10 @@
 import { useState } from "react";
 import { Autocomplete, AutocompleteItem } from "@nextui-org/autocomplete";
 import { useTranslations } from "next-intl";
-import { UseFieldArrayAppend, UseFieldArrayRemove } from "react-hook-form";
+import { FieldErrors, UseFieldArrayReturn } from "react-hook-form";
 import { Chip } from "@nextui-org/chip";
 import toast from "react-hot-toast";
+import { Tooltip } from "@nextui-org/tooltip";
 
 import { useTagList } from "./useTagList";
 
@@ -11,19 +12,21 @@ import { NewItemInputs } from "@/types/schemas";
 import { createNewTag } from "@/utils/db/items";
 
 type TagsInputProps = {
-  append: UseFieldArrayAppend<NewItemInputs, "tags">;
-  remove: UseFieldArrayRemove;
+  tagArray: UseFieldArrayReturn<NewItemInputs, "tags", "id">;
+  errors: FieldErrors<NewItemInputs>;
   tagsInItem: {
     id: number;
   }[];
 };
 
-function TagsInput({ append, remove, tagsInItem }: TagsInputProps) {
+function TagsInput({ tagArray, tagsInItem, errors }: TagsInputProps) {
   const [_, setIsOpen] = useState(false);
   const { tags, isLoading, refetchTags } = useTagList();
   const [isCreatingTag, setIsCreatingTag] = useState(false);
   const [newTagName, setNewTagName] = useState("");
   const t = useTranslations("item.tags");
+
+  const { append, remove } = tagArray;
 
   function handleSelectionChange(key: React.Key) {
     if (key !== "") {
@@ -36,20 +39,24 @@ function TagsInput({ append, remove, tagsInItem }: TagsInputProps) {
   async function handleEnter(
     e: React.KeyboardEvent<HTMLInputElement> | KeyboardEvent
   ) {
-    if (e.key === "Enter") {
-      if (!tags.some((tag) => tag.name === newTagName)) {
+    if (e.key === "Enter" && e.shiftKey) {
+      if (
+        newTagName !== "" &&
+        !tags.some((tag) => tag.name == newTagName.toLowerCase())
+      ) {
         try {
           setIsCreatingTag(true);
           const newTag = await createNewTag(newTagName);
 
           if (!newTag) {
-            toast("Error when creating new tag");
+            toast.error("Error when creating new tag");
           }
           append({ id: newTag.id });
           refetchTags();
           setNewTagName("");
         } catch (error) {
           console.log(error);
+          toast.error("Error when creating new tag");
         } finally {
           setIsCreatingTag(false);
         }
@@ -77,26 +84,32 @@ function TagsInput({ append, remove, tagsInItem }: TagsInputProps) {
 
   return (
     <>
-      <Autocomplete
-        allowsCustomValue
-        className="max-w-xs"
-        defaultItems={tags}
-        inputValue={newTagName}
-        isLoading={isLoading || isCreatingTag}
-        label={t("label")}
-        placeholder={t("placeholder")}
-        variant="bordered"
-        onInputChange={onInputChange}
-        onKeyDown={(e) => handleEnter(e)}
-        onOpenChange={setIsOpen}
-        onSelectionChange={(key) => handleSelectionChange(key || "")}
-      >
-        {(tags) => (
-          <AutocompleteItem key={tags.id} className="capitalize">
-            {tags.name}
-          </AutocompleteItem>
-        )}
-      </Autocomplete>
+      <Tooltip content={t("tagTooltip")}>
+        <div>
+          <Autocomplete
+            allowsCustomValue
+            className="max-w-xs"
+            defaultItems={tags}
+            errorMessage={t("error")}
+            inputValue={newTagName}
+            isInvalid={!!errors.tags}
+            isLoading={isLoading || isCreatingTag}
+            label={`${t("label")}`}
+            placeholder={t("placeholder")}
+            variant="bordered"
+            onInputChange={onInputChange}
+            onKeyDown={(e) => handleEnter(e)}
+            onOpenChange={setIsOpen}
+            onSelectionChange={(key) => handleSelectionChange(key || "")}
+          >
+            {(tags) => (
+              <AutocompleteItem key={tags.id} className="capitalize">
+                {tags.name}
+              </AutocompleteItem>
+            )}
+          </Autocomplete>
+        </div>
+      </Tooltip>
       <div className="flex flex-wrap gap-2">
         {tagsInItem &&
           tagsInItem.map((tag) => {

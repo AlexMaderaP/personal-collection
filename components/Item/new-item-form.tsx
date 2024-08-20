@@ -6,11 +6,15 @@ import React from "react";
 import { SubmitHandler, useFieldArray, useForm } from "react-hook-form";
 import { Input } from "@nextui-org/input";
 import { Button } from "@nextui-org/button";
+import toast from "react-hot-toast";
 
 import TagsInput from "./tags-input";
+import CustomFieldInput from "./custom-field-input";
 
 import { CustomFieldsForForm } from "@/types/collection";
 import { newItemFormSchema, NewItemInputs } from "@/types/schemas";
+import { createNewItem } from "@/utils/actions/item";
+import { useRouter } from "@/navigation";
 
 type NewItemFormProps = {
   customFields: CustomFieldsForForm[];
@@ -22,35 +26,49 @@ export default function NewItemForm({
   collectionId,
 }: NewItemFormProps) {
   const t = useTranslations("item.new");
+
+  const defaultCustomFieldValues = customFields.map((field) => ({
+    customFieldId: field.id,
+    value: "",
+  }));
+
   const {
     control,
     register,
     handleSubmit,
     getValues,
-    setValue,
     formState: { errors, isSubmitting },
   } = useForm<NewItemInputs>({
     resolver: zodResolver(newItemFormSchema),
+    defaultValues: {
+      customFieldValues: defaultCustomFieldValues,
+    },
   });
 
-  const { append, remove } = useFieldArray({
+  const router = useRouter();
+  const tagArray = useFieldArray({
     control,
     name: "tags",
   });
 
+  const { fields } = useFieldArray({
+    control,
+    name: "customFieldValues",
+  });
+
   const tagsInItem = getValues("tags");
+  const customFieldValues = getValues("customFieldValues");
 
   const createNewItemHandler: SubmitHandler<NewItemInputs> = async (data) => {
-    console.log(data);
-    // const result = await createNewCollection(data);
+    const result = await createNewItem(data);
 
-    // if (!result) {
-    //   toast.error("Sorry, try again");
+    if (!result) {
+      toast.error("Sorry, try again");
 
-    //   return;
-    // }
-    // toast.success("Collection, created succesfully");
-    // router.push(`/collection/${result.id}`);
+      return;
+    }
+    toast.success("Item, created succesfully");
+    router.push(`/collection/${collectionId}`);
   };
 
   return (
@@ -72,24 +90,25 @@ export default function NewItemForm({
           label={t("name")}
           variant="bordered"
         />
-        <TagsInput append={append} remove={remove} tagsInItem={tagsInItem} />
+        <TagsInput
+          errors={errors}
+          tagArray={tagArray}
+          tagsInItem={tagsInItem}
+        />
       </div>
       <div className="flex flex-col gap-3 min-w-72">
-        {/* <CustomFieldSection
-          errors={errors}
-          fields={fields}
-          register={register}
-          remove={remove}
-        /> */}
-        {/* <Button
-          fullWidth
-          color="primary"
-          onClick={() =>
-            append({ name: "", isRequired: false, type: "STRING" })
-          }
-        >
-          {t("addCustomField")}
-        </Button> */}
+        {fields.map((field, index) => (
+          <CustomFieldInput
+            key={field.id}
+            customFieldId={
+              customFieldValues && customFieldValues[index].customFieldId
+            }
+            customFields={customFields}
+            error={errors.customFieldValues?.[index]?.value}
+            registerValue={register(`customFieldValues.${index}.value`)}
+          />
+        ))}
+
         <div className=" flex justify-end mt-auto">
           <Button color="success" disabled={isSubmitting} type="submit">
             {t("create")}

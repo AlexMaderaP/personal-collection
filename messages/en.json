@@ -85,7 +85,9 @@
     "tags": {
       "label": "Tags",
       "placeholder": "Select or Create Tag",
-      "emptyMessage": "Press enter to add tag"
+      "emptyMessage": "Press enter to add tag",
+      "error": "Please provide at least one tag",
+      "tagTooltip": "Shift + Enter to create tag"
     }
   }
 }

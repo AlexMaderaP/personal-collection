@@ -19,7 +19,9 @@ export default async function NewItem({ params }: { params: { id: string } }) {
   return (
     <>
       <div>
-        <h1 className={title()}>{t("title")}</h1>
+        <h1 className={title()}>
+          {t("title")} - {collection.name}
+        </h1>
       </div>
       <div className="m-4 w-full">
         <NewItemForm

@@ -4,6 +4,7 @@ export async function getCustomFieldsByCollectionId(id: string) {
   const collection = await db.collection.findUnique({
     where: { id: parseInt(id, 10) },
     select: {
+      name: true,
       customFields: {
         select: {
           id: true,
@@ -16,7 +17,7 @@ export async function getCustomFieldsByCollectionId(id: string) {
   });
 
   if (!collection) {
-    return { customFields: [] };
+    return { name: "", customFields: [] };
   }
 
   return collection;
