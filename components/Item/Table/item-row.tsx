@@ -31,7 +31,7 @@ export const renderItemCell = (
           <Tooltip content="Details">
             <Link
               className="cursor-pointer text-lg text-default-400  active:opacity-50"
-              href={`/collection/${item.collectionId}/item/${item.id}`}
+              href={`/item/${item.id}`}
             >
               <EyeIcon />
             </Link>
@@ -43,7 +43,7 @@ export const renderItemCell = (
                 isOwnerOrAdmin ? "" : "hidden",
                 "cursor-pointer text-lg text-default-400 active:opacity-50",
               )}
-              href={`/collection/${item.collectionId}/item/${item.id}/edit`}
+              href={`/item/${item.id}/edit`}
             >
               <EditIcon />
             </Link>

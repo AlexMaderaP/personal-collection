@@ -80,7 +80,13 @@
       "title": "Nuevo Item",
       "name": "Nombre",
       "create": "Crear",
-      "tag": "Etiquetas"
+      "tags": "Etiquetas",
+      "delete": "Eliminar",
+      "edit": "Editar",
+      "collectionName": "Colleccíon",
+      "customFieldValues": "Campos",
+      "createdOn": "Creado el",
+      "comments": "Commentarios"
     },
     "table": {
       "id": "ID",

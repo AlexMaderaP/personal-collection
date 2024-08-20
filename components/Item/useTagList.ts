@@ -1,7 +1,7 @@
 import { Tag } from "@prisma/client";
 import { useEffect, useState } from "react";
 
-import { getTags } from "@/utils/db/items";
+import { getTags } from "@/utils/db/tags";
 
 export function useTagList() {
   const [tags, setTags] = useState<Tag[] | []>([]);

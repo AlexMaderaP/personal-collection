@@ -67,7 +67,7 @@
       "delete": "Delete",
       "edit": "Edit",
       "customField": "Custom Fields",
-      "createdAt": "Created at",
+      "createdAt": "Created on",
       "save": "Save",
       "addItem": "Add Item"
     },
@@ -80,14 +80,21 @@
       "title": "New Item",
       "name": "Name",
       "create": "Create",
-      "tags": "Tags"
+      "tags": "Tags",
+      "delete": "Delete",
+      "edit": "Edit",
+      "collectionName": "Collection",
+      "customFieldValues": "Fields",
+      "value": "Value",
+      "createdOn": "Created on",
+      "comments": "Comments"
     },
     "table": {
       "id": "ID",
       "name": "Name",
       "tags": "# Tags",
       "customFieldsValues": "# Custom Fields",
-      "createdAt": "Created At",
+      "createdAt": "Created on",
       "actions": "Actions",
       "search": "Search by name..."
     },
