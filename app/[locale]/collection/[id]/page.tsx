@@ -10,6 +10,8 @@ import { getCollection } from "@/utils/db/collection";
 import { subtitle, title } from "@/components/primitives";
 import ButtonLink from "@/components/button-link";
 import DeleteCollectionButton from "@/components/Collection/delete-collection-button";
+import { getItemsFromCollection } from "@/utils/db/items";
+import ItemsTable from "@/components/Item/Table/items-table";
 
 export default async function CollectionPage({
   params,
@@ -23,6 +25,8 @@ export default async function CollectionPage({
   if (!collection) notFound();
 
   const isOwnerOrAdmin = userId === collection.userId || checkAdmin();
+
+  const items = await getItemsFromCollection(+params.id);
 
   return (
     <div className="w-full flex flex-col items-center gap-8">
@@ -91,6 +95,9 @@ export default async function CollectionPage({
             message={t("addItem")}
           />
         </div>
+      </div>
+      <div className="flex m-6 w-full justify-center">
+        <ItemsTable isOwnerOrAdmin={isOwnerOrAdmin} items={items} />
       </div>
     </div>
   );

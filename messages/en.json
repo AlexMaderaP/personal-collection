@@ -82,6 +82,15 @@
       "create": "Create",
       "tags": "Tags"
     },
+    "table": {
+      "id": "ID",
+      "name": "Name",
+      "tags": "# Tags",
+      "customFieldsValues": "# Custom Fields",
+      "createdAt": "Created At",
+      "actions": "Actions",
+      "search": "Search by name..."
+    },
     "tags": {
       "label": "Tags",
       "placeholder": "Select or Create Tag",

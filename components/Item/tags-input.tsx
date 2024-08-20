@@ -37,7 +37,7 @@ function TagsInput({ tagArray, tagsInItem, errors }: TagsInputProps) {
   }
 
   async function handleEnter(
-    e: React.KeyboardEvent<HTMLInputElement> | KeyboardEvent
+    e: React.KeyboardEvent<HTMLInputElement> | KeyboardEvent,
   ) {
     if (e.key === "Enter" && e.shiftKey) {
       if (
