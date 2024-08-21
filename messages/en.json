@@ -87,7 +87,8 @@
       "customFieldValues": "Fields",
       "value": "Value",
       "createdOn": "Created on",
-      "comments": "Comments"
+      "comments": "Comments",
+      "editItem": "Edit Item"
     },
     "table": {
       "id": "ID",

@@ -8,11 +8,13 @@ import { Tooltip } from "@nextui-org/tooltip";
 
 import { useTagList } from "./useTagList";
 
-import { NewItemInputs } from "@/types/schemas";
+import { EditItemInputs, NewItemInputs } from "@/types/schemas";
 import { createNewTag } from "@/utils/db/tags";
 
 type TagsInputProps = {
-  tagArray: UseFieldArrayReturn<NewItemInputs, "tags", "id">;
+  tagArray:
+    | UseFieldArrayReturn<NewItemInputs, "tags", "id">
+    | UseFieldArrayReturn<EditItemInputs, "tags", "id">;
   errors: FieldErrors<NewItemInputs>;
   tagsInItem: {
     id: number;

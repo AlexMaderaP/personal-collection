@@ -5,7 +5,7 @@ import { auth } from "@clerk/nextjs/server";
 import { title } from "@/components/primitives";
 import { getCollection } from "@/utils/db/collection";
 import { checkAdmin } from "@/utils/roles";
-import EditForm from "@/components/Collection/edit-form";
+import EditCollectionForm from "@/components/Collection/edit-collection-form";
 
 export default async function EditCollection({
   params,
@@ -25,7 +25,7 @@ export default async function EditCollection({
     <>
       <h1 className={title()}>{t("title")}</h1>
       <div className="m-4 w-full">
-        <EditForm collection={collection} />
+        <EditCollectionForm collection={collection} />
       </div>
     </>
   );

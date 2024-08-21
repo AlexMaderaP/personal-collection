@@ -57,3 +57,24 @@ export async function getItem(id: string) {
 
   return item;
 }
+
+export async function getItemForEdit(id: string) {
+  const item = await db.item.findUnique({
+    where: { id: parseInt(id, 10) },
+    include: {
+      collection: {
+        select: {
+          userId: true,
+        },
+      },
+      customFieldValues: true,
+      tags: true,
+    },
+  });
+
+  if (!item) {
+    return;
+  }
+
+  return item;
+}

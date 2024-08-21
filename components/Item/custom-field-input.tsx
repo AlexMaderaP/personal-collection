@@ -28,7 +28,7 @@ export default function CustomFieldInput({
 function renderInput(
   customField: CustomFieldsForForm,
   registerValue: UseFormRegisterReturn<`customFieldValues.${number}.value`>,
-  error: FieldError | undefined,
+  error: FieldError | undefined
 ) {
   const { isRequired, name, type } = customField;
 

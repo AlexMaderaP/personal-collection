@@ -24,7 +24,7 @@ type EditFormProps = {
   collection: CollectionWithFieldsCategory;
 };
 
-export default function EditForm({ collection }: EditFormProps) {
+export default function EditCollectionForm({ collection }: EditFormProps) {
   const t = useTranslations("collection.new");
   const [isAddingField, setIsAddingField] = useState(false);
   const {

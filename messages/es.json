@@ -86,7 +86,8 @@
       "collectionName": "Colleccíon",
       "customFieldValues": "Campos",
       "createdOn": "Creado el",
-      "comments": "Commentarios"
+      "comments": "Commentarios",
+      "editItem": "Editar Item"
     },
     "table": {
       "id": "ID",
