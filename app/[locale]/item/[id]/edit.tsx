@@ -19,14 +19,14 @@ export default async function EditItem({ params }: { params: { id: string } }) {
   if (!isOwnerOrAdmin) auth().redirectToSignIn();
 
   const collection = await getCustomFieldsByCollectionId(
-    item.collectionId.toString()
+    item.collectionId.toString(),
   );
 
   return (
     <>
       <h1 className={title()}>{t("title")}</h1>
       <div className="m-4 w-full">
-        <EditItemForm item={item} customFields={collection.customFields} />
+        <EditItemForm customFields={collection.customFields} item={item} />
       </div>
     </>
   );

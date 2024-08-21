@@ -1,5 +1,7 @@
 import { Tag } from "@prisma/client";
 
+import { db } from "./db";
+
 export async function getTags() {
   try {
     const res = await fetch("/api/tags");
@@ -30,4 +32,15 @@ export async function createNewTag(tagName: string) {
   } catch (error) {
     throw new Error("Could not create tag");
   }
+}
+
+export async function getTagsFromDB(limit?: number) {
+  const tags = await db.tag.findMany({
+    orderBy: {
+      name: "asc",
+    },
+    take: limit,
+  });
+
+  return tags;
 }

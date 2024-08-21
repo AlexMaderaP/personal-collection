@@ -13,7 +13,11 @@
     "create": "Crea",
     "custom": "Colecciones",
     "collection": "Personalizadas",
-    "display": "Aqui mostraré las coleciones para todos"
+    "latestItems": "Ultimos items agregados",
+    "largestCollections": "Collecciones más grandes",
+    "tagCloud": "Nube de tags",
+    "categoryMessage": "Categoría",
+    "itemMessage": "# Items"
   },
   "notFound": {
     "title": "Disculpa, la página no fue encontrada!",

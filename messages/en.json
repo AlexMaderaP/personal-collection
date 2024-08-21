@@ -12,8 +12,12 @@
     "title": "Hello world!",
     "create": "Create",
     "custom": "Custom",
-    "collection": "Collection",
-    "display": "Here I will display the created collections to everyone"
+    "collection": "Collections",
+    "latestItems": "Latest Added Items",
+    "largestCollections": "Largest Collections",
+    "tagCloud": "Tag Cloud",
+    "categoryMessage": "Category",
+    "itemMessage": "# Items"
   },
   "notFound": {
     "title": "Sorry, page not found!",

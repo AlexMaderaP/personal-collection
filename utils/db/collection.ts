@@ -55,3 +55,24 @@ export async function getCollection(id: string) {
 
   return collection;
 }
+
+export async function getLargestCollections(count: number) {
+  const collections = await db.collection.findMany({
+    include: {
+      _count: {
+        select: { items: true },
+      },
+      category: true,
+    },
+    orderBy: {
+      items: { _count: "desc" },
+    },
+    take: count,
+  });
+
+  if (!collections) {
+    return [];
+  }
+
+  return collections;
+}

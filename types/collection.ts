@@ -7,6 +7,17 @@ export type CollectionWithFieldsCategory = Prisma.CollectionGetPayload<{
   };
 }>;
 
+export type CollectionWithItemCount = Prisma.CollectionGetPayload<{
+  include: {
+    _count: {
+      select: {
+        items: true;
+      };
+    };
+    category: true;
+  };
+}>;
+
 export type CustomFieldsForForm = Prisma.CustomFieldGetPayload<{
   select: {
     id: true;
