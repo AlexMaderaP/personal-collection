@@ -17,7 +17,9 @@
     "largestCollections": "Largest Collections",
     "tagCloud": "Tag Cloud",
     "categoryMessage": "Category",
-    "itemMessage": "# Items"
+    "itemMessage": "# Items",
+    "createdOn": "Created on",
+    "collectionMessage": "From collection"
   },
   "notFound": {
     "title": "Sorry, page not found!",

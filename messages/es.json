@@ -17,7 +17,9 @@
     "largestCollections": "Collecciones más grandes",
     "tagCloud": "Nube de tags",
     "categoryMessage": "Categoría",
-    "itemMessage": "# Items"
+    "itemMessage": "# Items",
+    "createdOn": "Creado",
+    "collectionMessage": "Colección"
   },
   "notFound": {
     "title": "Disculpa, la página no fue encontrada!",

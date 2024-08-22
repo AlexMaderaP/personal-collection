@@ -1,11 +1,12 @@
 import { getTranslations } from "next-intl/server";
-import React from "react";
+import React, { Suspense } from "react";
 
 import NewItemForm from "@/components/Item/new-item-form";
 import { title } from "@/components/primitives";
 import { redirect } from "@/navigation";
 import { getCustomFieldsByCollectionId } from "@/utils/db/customFields";
 import { isOwnerOrAdmin } from "@/utils/roles";
+import LoadingSpinner from "@/components/loading";
 
 export default async function NewItem({ params }: { params: { id: string } }) {
   const t = await getTranslations("item.new");
@@ -24,10 +25,12 @@ export default async function NewItem({ params }: { params: { id: string } }) {
         </h1>
       </div>
       <div className="m-4 w-full">
-        <NewItemForm
-          collectionId={collectionId}
-          customFields={collection?.customFields}
-        />
+        <Suspense fallback={<LoadingSpinner />}>
+          <NewItemForm
+            collectionId={collectionId}
+            customFields={collection?.customFields}
+          />
+        </Suspense>
       </div>
     </>
   );

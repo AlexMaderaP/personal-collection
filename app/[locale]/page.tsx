@@ -1,5 +1,6 @@
 import { getTranslations } from "next-intl/server";
 import { Chip } from "@nextui-org/chip";
+import { SignedOut } from "@clerk/nextjs";
 
 import { title } from "@/components/primitives";
 import ButtonLink from "@/components/button-link";
@@ -7,11 +8,16 @@ import { getTagsFromDB } from "@/utils/db/tags";
 import { getRandomColor } from "@/utils/helpers/tag";
 import { getLargestCollections } from "@/utils/db/collection";
 import CollectionCard from "@/components/Collection/collection-card";
+import { getLatestItems } from "@/utils/db/items";
+import ItemCard from "@/components/Item/item-card";
 
 export default async function Home() {
   const t = await getTranslations("home");
-  const tags = await getTagsFromDB(30);
-  const collections = await getLargestCollections(5);
+  const limit = 5;
+  const tagLimit = 30;
+  const tags = await getTagsFromDB(tagLimit);
+  const collections = await getLargestCollections(limit);
+  const items = await getLatestItems(limit);
 
   return (
     <>
@@ -21,7 +27,9 @@ export default async function Home() {
           <h1 className={title({ color: "violet" })}>{t("custom")}</h1>
           <h1 className={title()}> {t("collection")}</h1>
           <div className="mt-4">
-            <ButtonLink href="/sign-in" message={t("nav.signIn")} />
+            <SignedOut>
+              <ButtonLink href="/sign-in" message={t("nav.signIn")} />
+            </SignedOut>
           </div>
         </div>
       </section>
@@ -29,8 +37,15 @@ export default async function Home() {
       <div className="mt-10 grid gap-6 lg:grid-cols-2 w-full">
         <section className="p-6 ">
           <h2 className={title()}>{t("latestItems")}</h2>
-          <ul>
-            <li>Items to show</li>
+          <ul className="mt-6">
+            {items.map((item) => (
+              <ItemCard
+                key={item.id}
+                collectionMessage={t("collectionMessage")}
+                createdMessage={t("createdOn")}
+                item={item}
+              />
+            ))}
           </ul>
         </section>
 

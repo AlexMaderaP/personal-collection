@@ -78,3 +78,27 @@ export async function getItemForEdit(id: string) {
 
   return item;
 }
+
+export async function getLatestItems(limit: number) {
+  const items = await db.item.findMany({
+    take: limit,
+    orderBy: {
+      updatedAt: "desc",
+    },
+    include: {
+      customFieldValues: {
+        include: {
+          customField: true,
+        },
+      },
+      tags: true,
+      collection: true,
+    },
+  });
+
+  if (!items) {
+    return [];
+  }
+
+  return items;
+}

@@ -21,3 +21,15 @@ export type ItemForEditableForm = Prisma.ItemGetPayload<{
     customFieldValues: true;
   };
 }>;
+
+export type ItemWithDetails = Prisma.ItemGetPayload<{
+  include: {
+    customFieldValues: {
+      include: {
+        customField: true;
+      };
+    };
+    tags: true;
+    collection: true;
+  };
+}>;

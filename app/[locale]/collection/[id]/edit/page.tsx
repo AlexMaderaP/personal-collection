@@ -1,11 +1,13 @@
 import { getTranslations } from "next-intl/server";
 import { notFound } from "next/navigation";
 import { auth } from "@clerk/nextjs/server";
+import { Suspense } from "react";
 
 import { title } from "@/components/primitives";
 import { getCollection } from "@/utils/db/collection";
 import { checkAdmin } from "@/utils/roles";
 import EditCollectionForm from "@/components/Collection/edit-collection-form";
+import LoadingSpinner from "@/components/loading";
 
 export default async function EditCollection({
   params,
@@ -25,7 +27,9 @@ export default async function EditCollection({
     <>
       <h1 className={title()}>{t("title")}</h1>
       <div className="m-4 w-full">
-        <EditCollectionForm collection={collection} />
+        <Suspense fallback={<LoadingSpinner />}>
+          <EditCollectionForm collection={collection} />
+        </Suspense>
       </div>
     </>
   );

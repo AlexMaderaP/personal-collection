@@ -7,6 +7,7 @@ import { Input, Textarea } from "@nextui-org/input";
 import { Button } from "@nextui-org/button";
 import { useAuth } from "@clerk/nextjs";
 import toast from "react-hot-toast";
+import { Suspense } from "react";
 
 import { title } from "@/components/primitives";
 import SelectCategory from "@/components/Collection/select-category";
@@ -15,6 +16,7 @@ import CustomFieldSection from "@/components/Collection/custom-field-section";
 import { useRouter } from "@/navigation";
 import { newCollectionFormSchema, NewCollectionInputs } from "@/types/schemas";
 import { createNewCollection } from "@/utils/actions/collection";
+import LoadingSpinner from "@/components/loading";
 
 export default function NewCollection() {
   const { userId } = useAuth();
@@ -50,7 +52,7 @@ export default function NewCollection() {
   };
 
   return (
-    <>
+    <Suspense fallback={<LoadingSpinner />}>
       <h1 className={title()}>{t("title")} </h1>
       <div className="m-4 w-full">
         <form
@@ -110,6 +112,6 @@ export default function NewCollection() {
           </div>
         </form>
       </div>
-    </>
+    </Suspense>
   );
 }
