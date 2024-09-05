@@ -47,7 +47,7 @@ export default function NewCollection() {
 
       return;
     }
-    toast.success("Collection, created succesfully");
+    toast.success("Collection, created successfully");
     router.push(`/collection/${result.id}`);
   };
 

@@ -92,3 +92,12 @@ export const editItemFormSchema = z.object({
 });
 
 export type EditItemInputs = z.infer<typeof editItemFormSchema>;
+
+export const NewsLetterInputs = z.object({
+  firstName: z.string().min(1, "Name is required"),
+  lastName: z.string().min(1, "Last Name is required"),
+  email: z.string().min(1, "Email is required"),
+  phone: z.string().min(1, "Phone is required"),
+});
+
+export type NewsLetterSchema = z.infer<typeof NewsLetterInputs>;

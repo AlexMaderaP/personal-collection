@@ -79,6 +79,16 @@
     },
     "edit": {
       "title": "Editar Colección"
+    },
+    "newsletter": {
+      "firstName": "Primer Nombre",
+      "lastName": "Apellido",
+      "email": "Email",
+      "phone": "Celular",
+      "getNews": "Obtener Noticias",
+      "getNewsMessage": "Obtén las noticias mas nuevas",
+      "close": "Cerrar",
+      "subscribe": "Suscribir"
     }
   },
   "item": {

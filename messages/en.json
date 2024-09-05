@@ -79,6 +79,16 @@
     },
     "edit": {
       "title": "Edit Collection"
+    },
+    "newsletter": {
+      "firstName": "First Name",
+      "lastName": "Last Name",
+      "email": "Email",
+      "phone": "Phone Number",
+      "getNews": "Get Newsletter",
+      "getNewsMessage": "Get our Latest News",
+      "close": "Close",
+      "subscribe": "Subscribe"
     }
   },
   "item": {
